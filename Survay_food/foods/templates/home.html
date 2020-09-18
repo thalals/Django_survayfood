@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <h2>여기서 설문조사 </h2>
+</head>
+<body>
+    <h2> 설문조사 목록 </h2>
+    <form action="{% url 'list' %}" method="POST">
+        {% csrf_token %}
+        {% for food in lists  %}
+            <!-- 체크박스가 선택되면 food[] 배열안에 value 값 저장  -->
+            <input type="checkbox" name="food[]" value="{{food.price}}">
+            <span>{{food.name}} </span>
+            <span>{{food.price}} </span> <br>
+        {% endfor %}
+        <input type="submit" value="계산하기">
+        
+        {{sum_price.sum}}
+        
+        
+        
+    </form>
+    
+
+
+</body>
+</html>
